@@ -147,7 +147,8 @@
                                                                               target:nil
                                                                               action:nil];
 
-    NSArray *items = [NSArray arrayWithObjects:self.btColour, flexItem, btRecycle, flexItem, btSave, nil];
+    //NSArray *items = [NSArray arrayWithObjects:self.btColour, flexItem, btRecycle, flexItem, btSave, nil];
+    NSArray *items = [NSArray arrayWithObjects:btRecycle, flexItem, btSave, nil];
     [self setToolbarItems:items animated:YES];
 
     [[self navigationController] setToolbarHidden:NO animated:NO];
