@@ -13,6 +13,7 @@ import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.util.Base64;
 import android.widget.RelativeLayout;
@@ -37,6 +39,8 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.cordova.hellocordova.R;
+
 public class TouchDrawActivity extends Activity {
     public static final String DRAWING_RESULT_PARCELABLE = "drawing_result";
     public static final String DRAWING_RESULT_ERROR = "drawing_error";
@@ -49,7 +53,7 @@ public class TouchDrawActivity extends Activity {
     public static final String DRAWING_RESULT_ENCODING_TYPE = "drawing_encoding_type";
 
     private Paint mPaint;
-    private int mStrokeWidth = 4;
+    private int mStrokeWidth = 8;
     private int mScale = 35;
     private Bitmap mBitmap;
     private TouchDrawView mTdView;
@@ -105,24 +109,24 @@ public class TouchDrawActivity extends Activity {
         LinearLayout buttonBar = createButtonBar();
         buttonBar.setId(getNextViewId());
         RelativeLayout.LayoutParams buttonBarLayoutParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams.MATCH_PARENT, 200);
         buttonBarLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         buttonBar.setLayoutParams(buttonBarLayoutParams);
         tDLayout.addView(buttonBar);
 
-        LinearLayout toolBar = createToolBar();
+        /*LinearLayout toolBar = createToolBar();
         toolBar.setId(getNextViewId());
         RelativeLayout.LayoutParams toolBarLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         toolBarLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         toolBar.setLayoutParams(toolBarLayoutParams);
-        tDLayout.addView(toolBar);
+        tDLayout.addView(toolBar);*/
 
         FrameLayout tDContainer = new FrameLayout(this);
         RelativeLayout.LayoutParams tDViewLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         tDViewLayoutParams.addRule(RelativeLayout.BELOW, buttonBar.getId());
-        tDViewLayoutParams.addRule(RelativeLayout.ABOVE, toolBar.getId());
+        //tDViewLayoutParams.addRule(RelativeLayout.ABOVE, toolBar.getId());
         tDContainer.setLayoutParams(tDViewLayoutParams);
         mTdView = new TouchDrawView(this);
         tDContainer.addView(mTdView);
@@ -134,7 +138,7 @@ public class TouchDrawActivity extends Activity {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(Color.BLUE);
+        mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -144,11 +148,11 @@ public class TouchDrawActivity extends Activity {
     public LinearLayout createButtonBar() {
         LinearLayout buttonBar = new LinearLayout(this);
 
-        Button doneButton = new Button(this);
-        doneButton.setText("Done");
-        doneButton.setBackgroundColor(Color.GREEN);
-        doneButton.setLayoutParams(new LinearLayout.LayoutParams(
-                0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
+        ImageButton doneButton = new ImageButton(this);
+        //doneButton.setText("Done");
+        doneButton.setImageResource(R.drawable.ic_save);
+        doneButton.setBackgroundColor(Color.parseColor("#353535"));
+        doneButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
         doneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -156,11 +160,12 @@ public class TouchDrawActivity extends Activity {
             }
         });
 
-        Button eraseButton = new Button(this);
-        eraseButton.setText("Erase");
-        eraseButton.setBackgroundColor(Color.GRAY);
-        eraseButton.setLayoutParams(new LinearLayout.LayoutParams(
-                0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
+        ImageButton eraseButton = new ImageButton(this);
+        //eraseButton.setText("Erase");
+        eraseButton.setBackgroundColor(Color.parseColor("#353535"));
+        eraseButton.setImageResource(R.drawable.ic_reset);
+        eraseButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
+
         eraseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -168,11 +173,11 @@ public class TouchDrawActivity extends Activity {
             }
         });
 
-        Button cancelButton = new Button(this);
-        cancelButton.setText("Cancel");
-        cancelButton.setBackgroundColor(Color.RED);
-        cancelButton.setLayoutParams(new LinearLayout.LayoutParams(
-                0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
+        ImageButton cancelButton = new ImageButton(this);
+        //cancelButton.setText("Cancel");
+        cancelButton.setImageResource(R.drawable.ic_close);
+        cancelButton.setBackgroundColor(Color.parseColor("#353535"));
+        cancelButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -183,7 +188,7 @@ public class TouchDrawActivity extends Activity {
 
         buttonBar.addView(doneButton);
         buttonBar.addView(eraseButton);
-        //buttonBar.addView(cancelButton);
+        buttonBar.addView(cancelButton);
 
         return buttonBar;
     }
