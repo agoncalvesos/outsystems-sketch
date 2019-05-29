@@ -29,6 +29,7 @@ import android.util.Base64;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.content.res.Resources;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,8 +39,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import au.com.blinkmobile.cordova.sketch.R;
 
 public class TouchDrawActivity extends Activity {
     public static final String DRAWING_RESULT_PARCELABLE = "drawing_result";
@@ -146,11 +145,17 @@ public class TouchDrawActivity extends Activity {
     }
 
     public LinearLayout createButtonBar() {
+
+        Resources activityRes = cordova.getActivity().getResources();
+        int icSaveResId = activityRes.getIdentifier("ic_save", "drawable", cordova.getActivity().getPackageName());
+        int icResetResId = activityRes.getIdentifier("ic_reset", "drawable", cordova.getActivity().getPackageName());
+        int icCloseResId = activityRes.getIdentifier("ic_close", "drawable", cordova.getActivity().getPackageName());
+
         LinearLayout buttonBar = new LinearLayout(this);
 
         ImageButton doneButton = new ImageButton(this);
         //doneButton.setText("Done");
-        doneButton.setImageResource(R.drawable.ic_save);
+        doneButton.setImageDrawable(activityRes.getDrawable(icSaveResId));
         doneButton.setBackgroundColor(Color.parseColor("#353535"));
         doneButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
         doneButton.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +168,7 @@ public class TouchDrawActivity extends Activity {
         ImageButton eraseButton = new ImageButton(this);
         //eraseButton.setText("Erase");
         eraseButton.setBackgroundColor(Color.parseColor("#353535"));
-        eraseButton.setImageResource(R.drawable.ic_reset);
+        eraseButton.setImageDrawable(activityRes.getDrawable(icResetResId));
         eraseButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
 
         eraseButton.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +180,7 @@ public class TouchDrawActivity extends Activity {
 
         ImageButton cancelButton = new ImageButton(this);
         //cancelButton.setText("Cancel");
-        cancelButton.setImageResource(R.drawable.ic_close);
+        cancelButton.setImageDrawable(activityRes.getDrawable(icCloseResId));
         cancelButton.setBackgroundColor(Color.parseColor("#353535"));
         cancelButton.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, (float) 0.30));
         cancelButton.setOnClickListener(new View.OnClickListener() {
