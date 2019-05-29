@@ -68,6 +68,21 @@
             target-dir="src/au/com/blinkmobile/cordova/sketch" />
         <source-file src="src/android/TouchDrawActivity.java"
             target-dir="src/au/com/blinkmobile/cordova/sketch" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_close.png" target="res/drawable-hdpi/ic_close.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_close.png" target="res/drawable-mdpi/ic_close.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_close.png" target="res/drawable-xhdpi/ic_close.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_close.png" target="res/drawable-xxhdpi/ic_close.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_reset.png" target="res/drawable-hdpi/ic_reset.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_reset.png" target="res/drawable-mdpi/ic_reset.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_reset.png" target="res/drawable-xhdpi/ic_reset.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_reset.png" target="res/drawable-xxhdpi/ic_reset.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_save.png" target="res/drawable-hdpi/ic_save.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_save.png" target="res/drawable-mdpi/ic_save.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_save.png" target="res/drawable-xhdpi/ic_save.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_save.png" target="res/drawable-xxhdpi/ic_save.png" />
     </platform>
 
 </plugin>
