@@ -17,7 +17,7 @@
     "cordova-windows"
   ],
   "devDependencies": {
-    "eslint": "^1.1",
+    "eslint": "^6.6",
     "eslint-config-semistandard": "^5.0",
     "eslint-config-standard": "^4.0"
   },
